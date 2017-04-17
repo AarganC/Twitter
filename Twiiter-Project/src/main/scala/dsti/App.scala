@@ -20,10 +20,10 @@ object App {
     //Création d'un DStream, enregistrement de 30sec
     val ssc = new StreamingContext(sc, Duration(30000))
     //Clès et identifiant twitter
-    System.setProperty("twitter4j.oauth.consumerKey", "OQoLagwCvHLxMs9j994GHyr7B")
-    System.setProperty("twitter4j.oauth.consumerSecret", "pVqJwsxb3HyeFatTeteiNrtscpf9B3d05wpbxDWojWhPj3nYMh")
-    System.setProperty("twitter4j.oauth.accessToken", "841687526259732480-OGpHgHDB4lu5TmhZmcz1C6ttFKfZhMQ")
-    System.setProperty("twitter4j.oauth.accessTokenSecret", "YSRM2bQeYtxXzTVHshgI2FJQvBKxtjoPNHGCyWK5VEZ4t")
+    System.setProperty("twitter4j.oauth.consumerKey", "consumerKey")
+    System.setProperty("twitter4j.oauth.consumerSecret", "consumerSecret")
+    System.setProperty("twitter4j.oauth.accessToken", "accessToken")
+    System.setProperty("twitter4j.oauth.accessTokenSecret", "accessTokenSecret")
 
     //Création d'un RDD
     val stream = TwitterUtils.createStream(ssc, None)
@@ -44,7 +44,7 @@ object App {
       + "\nLocation : " +
       status.getUser.getLocation        //Localisation lors de l'émission du Twitt.
       + "\n\n").repartition(1)
-      //.saveAsTextFiles("/Users/aargancointepas/scala/twitter")//Sauvegarde dans un seul fichier par relever. Mac
+      //.saveAsTextFiles("~/scala/twitter")//Sauvegarde dans un seul fichier par relever. Mac
         .saveAsObjectFiles("/user/hdfs/scala/twitter")//Sauvegarde dans un seul fichier par relever. HDP
     System.out.println("4")
 
